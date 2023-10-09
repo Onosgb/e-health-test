@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Todo } from './models';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  matSnackBar = inject(MatSnackBar);
+  todos: Todo[] = [];
   title = 'e-health-todo-list';
 
   get getTimeOfDay(): string {
@@ -18,5 +22,28 @@ export class AppComponent {
     } else {
       return 'Night';
     }
+  }
+
+  createTodo(todo: Todo) {
+    if (todo) {
+      if (typeof todo.id === 'number') {
+        this.todos = this.todos.map((oldTodo) =>
+          oldTodo.id === todo.id ? todo : oldTodo
+        );
+        this.msg('Successfully updated!');
+      } else {
+        this.todos.push({ ...todo, id: this.todos.length });
+        this.msg('Successfully added!');
+      }
+    }
+  }
+
+  deleteTodo(id: number) {
+    this.todos = this.todos.filter((todo) => todo.id !== +id);
+    this.msg('Successfully removed!');
+  }
+
+  msg(msg: string) {
+    this.matSnackBar.open(msg, 'X', { duration: 3000 });
   }
 }

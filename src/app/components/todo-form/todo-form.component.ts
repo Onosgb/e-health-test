@@ -14,24 +14,35 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./todo-form.component.scss'],
 })
 export class TodoFormComponent {
-  todoForm = new FormGroup({
-    id: new FormControl(''),
-    task: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    time: new FormControl('', Validators.required),
-    priority: new FormControl(''),
-    isScheduled: new FormControl(false, Validators.required),
-    date: new FormControl(new Date()),
-  });
+  todoForm!: FormGroup;
 
   submitted = false;
   constructor(
     public dialogRef: MatDialogRef<TodoFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Todo
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: Todo,
+    private fb: FormBuilder
+  ) {
+    this.createForm();
+
+    if (data) {
+      this.todoForm.patchValue(this.data);
+    }
+  }
 
   get f() {
     return this.todoForm.controls;
+  }
+
+  createForm() {
+    this.todoForm = this.fb.group({
+      id: new FormControl(''),
+      task: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      time: new FormControl('', Validators.required),
+      priority: new FormControl(''),
+      isScheduled: new FormControl(false, Validators.required),
+      date: new FormControl(new Date()),
+    });
   }
 
   onSubmit() {

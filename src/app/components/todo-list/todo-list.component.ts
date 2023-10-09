@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TodoFormComponent } from '../todo-form/todo-form.component';
+import { Todo } from 'src/app/models';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,6 +10,10 @@ import { TodoFormComponent } from '../todo-form/todo-form.component';
 })
 export class TodoListComponent {
   dailog = inject(MatDialog);
+  @Input({ required: true }) todos: Todo[] = [];
+  @Output()
+  createEvent = new EventEmitter<Todo>();
+  @Output() deleteEvent = new EventEmitter<number>();
 
   addTodo() {
     const dailog = this.dailog.open(TodoFormComponent, {
@@ -17,7 +22,27 @@ export class TodoListComponent {
     });
 
     dailog.afterClosed().subscribe((data) => {
-      console.log(data);
+      if (data) {
+        this.createEvent.emit(data);
+      }
+    });
+  }
+
+  deleteTodo(id: number) {
+    this.deleteEvent.emit(id);
+  }
+
+  editTodo(todo: Todo) {
+    const dailog = this.dailog.open(TodoFormComponent, {
+      minWidth: '30%',
+      height: 'auto',
+      data: todo,
+    });
+
+    dailog.afterClosed().subscribe((data) => {
+      if (data) {
+        this.createEvent.emit(data);
+      }
     });
   }
 }

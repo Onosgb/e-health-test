@@ -14,81 +14,23 @@
         </th>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let todo of todos">
           <td><input type="checkbox" /></td>
-          <td><span class="task">Clean my room</span></td>
-          <td>Including mum and dad room</td>
-          <td>10:30 am</td>
           <td>
-            <div class="actions">
-              <button mat-icon-button color="primary">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              </button>
-              <button mat-icon-button color="accent">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-              </button>
-            </div>
+            <span class="task">{{ todo.task }}</span>
           </td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td><span class="task">Clean my room</span></td>
-          <td>Including mum and dad room</td>
-          <td>10:30 am</td>
+          <td>{{ todo.description }}</td>
+          <td>{{ todo.time }} am</td>
           <td>
             <div class="actions">
-              <button mat-icon-button color="primary">
+              <button mat-icon-button color="primary" (click)="editTodo(todo)">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
-              <button mat-icon-button color="accent">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td><span class="task">Clean my room</span></td>
-          <td>Including mum and dad room</td>
-          <td>10:30 am</td>
-          <td>
-            <div class="actions">
-              <button mat-icon-button color="primary">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              </button>
-              <button mat-icon-button color="accent">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td><span class="task">Clean my room</span></td>
-          <td>Including mum and dad room</td>
-          <td>10:30 am</td>
-          <td>
-            <div class="actions">
-              <button mat-icon-button color="primary">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              </button>
-              <button mat-icon-button color="accent">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td><span class="task">Clean my room</span></td>
-          <td>Including mum and dad room</td>
-          <td>10:30 am</td>
-          <td>
-            <div class="actions">
-              <button mat-icon-button color="primary">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              </button>
-              <button mat-icon-button color="accent">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="deleteTodo(todo.id)"
+              >
                 <i class="fa fa-trash" aria-hidden="true"></i>
               </button>
             </div>

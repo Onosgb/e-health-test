@@ -55,6 +55,10 @@
     </mat-card>
   </div>
   <div class="content">
-    <app-todo-list></app-todo-list>
+    <app-todo-list
+      (createEvent)="createTodo($event)"
+      [todos]="todos"
+      (deleteEvent)="deleteTodo($event)"
+    ></app-todo-list>
   </div>
 </div>
