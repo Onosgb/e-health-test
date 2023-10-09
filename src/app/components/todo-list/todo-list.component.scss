@@ -35,6 +35,9 @@ table {
         color: $text-dark;
         font-weight: normal;
         font-size: 1.6rem;
+        .fa-check-square {
+          color: blue;
+        }
         .task {
           color: #000;
           font-weight: bold;
