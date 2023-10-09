@@ -1,12 +1,20 @@
 @use "../../scss/mixins" as *;
 @use "../../scss/variables" as *;
 
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .title {
   color: $text-secondary;
 }
 
 table {
   width: 100%;
+  max-height: 60vh;
+  overflow: hidden;
+  overflow-y: auto;
   border-collapse: collapse;
 
   thead {

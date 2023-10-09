@@ -24,7 +24,7 @@ export class AppComponent {
     } else if (currentHour >= 12 && currentHour < 18) {
       return 'Afternoon';
     } else {
-      return 'Night';
+      return 'Evening';
     }
   }
 
@@ -50,6 +50,7 @@ export class AppComponent {
       case this.filterOpton.all:
         this.filteredTodos = this.todos;
         break;
+
       case this.filterOpton.scheduled:
         this.filteredTodos = this.todos.filter((data) => data.isScheduled);
         break;
@@ -57,12 +58,13 @@ export class AppComponent {
       case this.filterOpton.completed:
         this.filteredTodos = this.todos.filter((data) => data.completed);
         break;
+
       case this.filterOpton.flagged:
         this.filteredTodos = this.todos.filter((data) => data.flagged);
         break;
 
       default:
-        this.today.length;
+        this.filteredTodos = this.today;
         break;
     }
   }
@@ -78,8 +80,9 @@ export class AppComponent {
         );
         this.msg('Successfully updated!');
       } else {
-        this.todos.push({ ...todo, id: this.todos.length });
-        this.filteredTodos.push({ ...todo, id: this.todos.length });
+        todo.id = this.todos.length;
+        this.todos.push(todo);
+        this.filteredTodos.push(todo);
         this.msg('Successfully added!');
       }
     }
@@ -97,10 +100,11 @@ export class AppComponent {
 
   schedule(id: number) {
     this.todos = this.todos.map((t) =>
-      t.id == id ? { ...t, isScheduled: t.isScheduled ? false : true } : t
+      t.id === id ? { ...t, isScheduled: t.isScheduled ? false : true } : t
     );
+
     this.filteredTodos = this.filteredTodos.map((t) =>
-      t.id == id ? { ...t, isScheduled: t.isScheduled ? false : true } : t
+      t.id === id ? { ...t, isScheduled: t.isScheduled ? false : true } : t
     );
   }
 }
