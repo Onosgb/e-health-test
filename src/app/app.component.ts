@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Todo } from './models';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FilterEnum } from './enums/filter.enum';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  filterOpton = FilterEnum;
   matSnackBar = inject(MatSnackBar);
   todos: Todo[] = [];
+  filteredTodos: Todo[] = [];
   title = 'e-health-todo-list';
+  active: FilterEnum = FilterEnum.today;
 
   get getTimeOfDay(): string {
     const currentHour = new Date().getHours();
@@ -33,11 +37,34 @@ export class AppComponent {
         year === new Date(todo.date).getFullYear() &&
         month === new Date(todo.date).getMonth() &&
         date === new Date(todo.date).getDate()
-    ).length;
+    );
   }
 
   get scheduled() {
     return this.todos.filter((todo) => todo.isScheduled).length;
+  }
+
+  filterData(type: FilterEnum) {
+    this.active = type;
+    switch (type) {
+      case this.filterOpton.all:
+        this.filteredTodos = this.todos;
+        break;
+      case this.filterOpton.scheduled:
+        this.filteredTodos = this.todos.filter((data) => data.isScheduled);
+        break;
+
+      case this.filterOpton.completed:
+        this.filteredTodos = this.todos.filter((data) => data.completed);
+        break;
+      case this.filterOpton.flagged:
+        this.filteredTodos = this.todos.filter((data) => data.flagged);
+        break;
+
+      default:
+        this.today.length;
+        break;
+    }
   }
 
   createTodo(todo: Todo) {
@@ -46,9 +73,13 @@ export class AppComponent {
         this.todos = this.todos.map((oldTodo) =>
           oldTodo.id === todo.id ? todo : oldTodo
         );
+        this.filteredTodos = this.filteredTodos.map((oldTodo) =>
+          oldTodo.id === todo.id ? todo : oldTodo
+        );
         this.msg('Successfully updated!');
       } else {
         this.todos.push({ ...todo, id: this.todos.length });
+        this.filteredTodos.push({ ...todo, id: this.todos.length });
         this.msg('Successfully added!');
       }
     }
@@ -56,6 +87,7 @@ export class AppComponent {
 
   deleteTodo(id: number) {
     this.todos = this.todos.filter((todo) => todo.id !== +id);
+    this.todos = this.filteredTodos.filter((todo) => todo.id !== +id);
     this.msg('Successfully removed!');
   }
 
@@ -65,6 +97,9 @@ export class AppComponent {
 
   schedule(id: number) {
     this.todos = this.todos.map((t) =>
+      t.id == id ? { ...t, isSchedule: t.isScheduled ? false : true } : t
+    );
+    this.filteredTodos = this.filteredTodos.map((t) =>
       t.id == id ? { ...t, isSchedule: t.isScheduled ? false : true } : t
     );
   }

@@ -15,6 +15,7 @@ export class TodoListComponent {
   createEvent = new EventEmitter<Todo>();
   @Output() deleteEvent = new EventEmitter<number>();
   @Output() scheduleEvent = new EventEmitter<number>();
+
   addTodo() {
     const dailog = this.dailog.open(TodoFormComponent, {
       minWidth: '30%',
