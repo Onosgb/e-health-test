@@ -39,7 +39,7 @@
           <div class="button">
             <i class="fa fa-calendar" aria-hidden="true"></i>
             <div class="label">Scheduled</div>
-            <span>{{ scheduled }}</span>
+            <span>{{ scheduled.length }}</span>
           </div>
         </button>
         <button
@@ -63,7 +63,7 @@
           <div class="button">
             <i class="fa fa-flag" aria-hidden="true"></i>
             <div class="label">Flagged</div>
-            <span>0</span>
+            <span>{{ flagged.length }}</span>
           </div>
         </button>
         <button
@@ -75,7 +75,7 @@
           <div class="button">
             <i class="fa fa-check" aria-hidden="true"></i>
             <div class="label">Completed</div>
-            <span>0</span>
+            <span>{{ completed.length }}</span>
           </div>
         </button>
       </mat-card-content>
@@ -87,7 +87,7 @@
       [todos]="filteredTodos"
       [active]="active"
       (deleteEvent)="deleteTodo($event)"
-      (scheduleEvent)="schedule($event)"
+      (completedEvent)="selectCompleted($event)"
     ></app-todo-list>
   </div>
 </div>

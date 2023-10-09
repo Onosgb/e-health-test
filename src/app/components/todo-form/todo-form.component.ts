@@ -40,7 +40,9 @@ export class TodoFormComponent {
       description: new FormControl('', Validators.required),
       time: new FormControl('', Validators.required),
       priority: new FormControl(''),
-      isScheduled: new FormControl(false, Validators.required),
+      scheduled: new FormControl(false, Validators.required),
+      completed: new FormControl(false, Validators.required),
+      flagged: new FormControl(false, Validators.required),
       date: new FormControl(new Date()),
     });
   }

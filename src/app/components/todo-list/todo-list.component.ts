@@ -18,7 +18,7 @@ export class TodoListComponent {
   @Output()
   createEvent = new EventEmitter<Todo>();
   @Output() deleteEvent = new EventEmitter<number>();
-  @Output() scheduleEvent = new EventEmitter<number>();
+  @Output() completedEvent = new EventEmitter<number>();
 
   addTodo() {
     const dailog = this.dailog.open(TodoFormComponent, {
@@ -51,7 +51,7 @@ export class TodoListComponent {
     });
   }
 
-  schedule(id: number) {
-    this.scheduleEvent.emit(id);
+  selectCompleted(id: number) {
+    this.completedEvent.emit(id);
   }
 }

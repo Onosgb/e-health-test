@@ -45,7 +45,15 @@ export class AppComponent {
   }
 
   get scheduled() {
-    return this.todos.filter((todo) => todo.isScheduled).length;
+    return this.todos.filter((todo) => todo.scheduled);
+  }
+
+  get completed() {
+    return this.todos.filter((todo) => todo.completed);
+  }
+
+  get flagged() {
+    return this.todos.filter((todo) => todo.flagged);
   }
 
   filterData(type: FilterEnum) {
@@ -56,15 +64,15 @@ export class AppComponent {
         break;
 
       case this.filterOpton.scheduled:
-        this.filteredTodos = this.todos.filter((data) => data.isScheduled);
+        this.filteredTodos = this.scheduled;
         break;
 
       case this.filterOpton.completed:
-        this.filteredTodos = this.todos.filter((data) => data.completed);
+        this.filteredTodos = this.completed;
         break;
 
       case this.filterOpton.flagged:
-        this.filteredTodos = this.todos.filter((data) => data.flagged);
+        this.filteredTodos = this.flagged;
         break;
 
       default:
@@ -102,13 +110,13 @@ export class AppComponent {
     this.matSnackBar.open(msg, 'X', { duration: 3000 });
   }
 
-  schedule(id: number) {
+  selectCompleted(id: number) {
     this.todos = this.todos.map((t) =>
-      t.id === id ? { ...t, isScheduled: t.isScheduled ? false : true } : t
+      t.id === id ? { ...t, completed: t.completed ? false : true } : t
     );
 
     this.filteredTodos = this.filteredTodos.map((t) =>
-      t.id === id ? { ...t, isScheduled: t.isScheduled ? false : true } : t
+      t.id === id ? { ...t, completed: t.completed ? false : true } : t
     );
   }
 }

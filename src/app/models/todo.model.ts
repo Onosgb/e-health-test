@@ -5,7 +5,7 @@ export interface Todo {
   time: string;
   priority: boolean;
   date: string;
-  isScheduled: boolean;
+  scheduled: boolean;
   completed: boolean;
   flagged: boolean;
 }

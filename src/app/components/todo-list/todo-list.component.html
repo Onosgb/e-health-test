@@ -19,14 +19,14 @@
             <i
               class="fa fa-check-square"
               aria-hidden="true"
-              *ngIf="todo.isScheduled"
-              (click)="schedule(todo.id)"
+              *ngIf="todo.completed"
+              (click)="selectCompleted(todo.id)"
             ></i>
             <i
               class="fa fa-square-o"
               aria-hidden="true"
-              *ngIf="!todo.isScheduled"
-              (click)="schedule(todo.id)"
+              *ngIf="!todo.completed"
+              (click)="selectCompleted(todo.id)"
             ></i>
           </td>
           <td>
