@@ -97,10 +97,10 @@ export class AppComponent {
 
   schedule(id: number) {
     this.todos = this.todos.map((t) =>
-      t.id == id ? { ...t, isSchedule: t.isScheduled ? false : true } : t
+      t.id == id ? { ...t, isScheduled: t.isScheduled ? false : true } : t
     );
     this.filteredTodos = this.filteredTodos.map((t) =>
-      t.id == id ? { ...t, isSchedule: t.isScheduled ? false : true } : t
+      t.id == id ? { ...t, isScheduled: t.isScheduled ? false : true } : t
     );
   }
 }

@@ -15,7 +15,19 @@
       </thead>
       <tbody>
         <tr *ngFor="let todo of todos">
-          <td><input type="checkbox" (click)="schedule(todo.id)" /></td>
+          <td>
+            <input
+              type="checkbox"
+              (click)="schedule(todo.id)"
+              [value]="todo.isScheduled"
+              *ngIf="todo.isScheduled"
+            />
+            <input
+              type="checkbox"
+              (click)="schedule(todo.id)"
+              *ngIf="!todo.isScheduled"
+            />
+          </td>
           <td>
             <span class="task">{{ todo.task }}</span>
           </td>
