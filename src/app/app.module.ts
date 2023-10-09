@@ -6,13 +6,15 @@ import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [
-    AppComponent,
-    TodoFormComponent,
-    TodoListComponent,
+  declarations: [AppComponent, TodoFormComponent, TodoListComponent],
+  imports: [
+    BrowserModule,
+    AngularMaterialModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
   ],
-  imports: [BrowserModule, AngularMaterialModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

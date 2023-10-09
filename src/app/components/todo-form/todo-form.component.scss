@@ -37,6 +37,11 @@
     margin-bottom: 2rem;
   }
 
+  textarea.invalid,
+  input.invalid {
+    border: 1px solid $text-danger; /* Add a red border for invalid textarea */
+  }
+
   .text-area {
     @include input(
       1px solid $text-secondary-light,
