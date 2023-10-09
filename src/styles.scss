@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+@use "./app/scss/mixins" as *;
+@use "./app/scss/variables" as *;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "Open Sans";
+  width: 100vw;
+  background-color: #f9faff;
+
+  padding: 2rem;
+
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+p {
+  font-size: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+.mat-mdc-card {
+  height: 100%;
+  width: 100%;
+}
+
+.btn-secondary {
+  background-color: $text-secondary;
+  color: $white;
+}
+
+.btn-default {
+  background-color: #f0f2ff;
+}
+
+.text-secondary {
+  color: #fafdff;
+}
+
+.text-light {
+  color: #c7c8cf;
+}
+
+.text-dark {
+  color: #6f6f6f;
+}
+
+.text-danger {
+  color: $text-danger;
+}

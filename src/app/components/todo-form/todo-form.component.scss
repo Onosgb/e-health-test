@@ -1,0 +1,60 @@
+@use "../../scss/mixins" as *;
+@use "../../scss/variables" as *;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  flex-direction: column;
+
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      font-size: 1.5rem;
+    }
+  }
+
+  input {
+    @include input(1px solid lightgray, 0.5rem, 4rem, $white, $light-grey);
+    margin-bottom: 2rem;
+  }
+
+  .text-area {
+    @include input(1px solid lightgray, 0.5rem, 4rem, $white, $light-grey);
+    margin-bottom: 2rem;
+    height: 10rem;
+    padding-top: 1rem;
+  }
+
+  .groups {
+    @include align(flex, space-between, center, null);
+    width: 100%;
+
+    .group-checks {
+      width: 50%;
+      margin-bottom: 2rem;
+
+      @include align(flex, space-between, center, row);
+      .checkbox {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+
+  .time-input {
+    width: 50%;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .close {
+    @include align(flex, flex-end, center, row);
+  }
+}

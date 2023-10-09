@@ -1,0 +1,106 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title">Todo List</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table width="100%">
+      <thead>
+        <th></th>
+        <th width="25%">Task</th>
+        <th>Description</th>
+        <th width="15%">Time</th>
+        <th width="15%" style="text-align: right; padding-right: 1.5rem">
+          Actions
+        </th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td class="task">Clean my room</td>
+          <td>Including mum and dad room</td>
+          <td>10:30 am</td>
+          <td>
+            <div class="actions">
+              <button mat-icon-button>
+                <mat-icon aria-label="label">edit</mat-icon>
+              </button>
+              <button mat-icon-button>
+                <mat-icon aria-label="label">delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td class="task">Clean my room</td>
+          <td>Including mum and dad room</td>
+          <td>10:30 am</td>
+          <td>
+            <div class="actions">
+              <button mat-icon-button>
+                <mat-icon aria-label="label">edit</mat-icon>
+              </button>
+              <button mat-icon-button>
+                <mat-icon aria-label="label">delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td class="task">Clean my room</td>
+          <td>Including mum and dad room</td>
+          <td>10:30 am</td>
+          <td>
+            <div class="actions">
+              <button mat-icon-button>
+                <mat-icon aria-label="label">edit</mat-icon>
+              </button>
+              <button mat-icon-button>
+                <mat-icon aria-label="label">delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td class="task">Clean my room</td>
+          <td>Including mum and dad room</td>
+          <td>10:30 am</td>
+          <td>
+            <div class="actions">
+              <button mat-icon-button>
+                <mat-icon aria-label="label">edit</mat-icon>
+              </button>
+              <button mat-icon-button>
+                <mat-icon aria-label="label">delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td><span class="task">Clean my room</span></td>
+          <td>Including mum and dad room</td>
+          <td>10:30 am</td>
+          <td>
+            <div class="actions">
+              <button mat-icon-button color="primary">
+                <mat-icon aria-label="label">edit</mat-icon>
+              </button>
+              <button mat-icon-button color="accent">
+                <mat-icon aria-label="label">delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card-footer">
+      <button mat-raised-button color="primary" (click)="addTodo()">
+        <mat-icon aria-label="label">add</mat-icon> Add Task
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

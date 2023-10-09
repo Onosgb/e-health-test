@@ -1,0 +1,59 @@
+@use "./scss/mixins" as *;
+@use "./scss/variables" as *;
+
+header {
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .left {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    align-items: center;
+    &_title {
+      font-size: 1.8rem;
+      color: #5560a1;
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &_profile {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+    }
+  }
+}
+
+.container {
+  height: 80%;
+  display: flex;
+  gap: 2rem;
+
+  .side-nav {
+    width: 20%;
+    height: 80vh;
+
+    .buttons {
+      @include align(flex, flex-start, center, column);
+      gap: 1rem;
+      .btn {
+        background-color: $light-grey;
+        width: 100%;
+        &:hover {
+          background-color: $dark-grey;
+          color: $text-secondary;
+        }
+      }
+    }
+  }
+
+  .content {
+    width: 80%;
+  }
+}

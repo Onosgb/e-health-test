@@ -1,0 +1,61 @@
+@use "./variables" as *;
+
+@mixin position($position, $top, $left, $right, $bottom, $width, $height) {
+  position: $position;
+  top: $top;
+  left: $left;
+  bottom: $bottom;
+  right: $right;
+  width: $width;
+  height: $height;
+}
+
+@mixin align($flex, $justify-content, $align-items, $fd) {
+  display: $flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+  flex-direction: $fd;
+}
+
+@mixin input($br, $height, $bgColor, $outline) {
+  width: 100%;
+  height: $height;
+  background: $bgColor;
+  border-radius: $br;
+  outline: $outline;
+  outline: invert;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  padding-right: 2.5rem;
+}
+
+@mixin button(
+  $bg,
+  $textColor,
+  $height,
+  $fontSize,
+  $bdr,
+  $paddingVertical,
+  $paddingHorizontal
+) {
+  background: $bg;
+  color: $textColor;
+  height: $height;
+  line-height: $height;
+  display: inline-block;
+  font-size: $fontSize;
+  font-weight: 400;
+  border-radius: $bdr;
+  padding: $paddingVertical $paddingHorizontal;
+}
+
+@mixin input($bd, $br, $height, $bgColor, $outline) {
+  width: 100%;
+  height: $height;
+  background: $bgColor;
+  border-radius: $br;
+  outline: $outline;
+  border: $bd;
+  padding: 0.2rem 0.5rem;
+  padding-right: 2.5rem;
+}
