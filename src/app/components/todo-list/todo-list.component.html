@@ -52,7 +52,12 @@
       </tbody>
     </table>
     <div class="card-footer">
-      <button mat-raised-button color="primary" (click)="addTodo()">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addTodo()"
+        *ngIf="filterOpton.today === active"
+      >
         <i class="fa fa-plus" aria-hidden="true"></i> Add Task
       </button>
     </div>

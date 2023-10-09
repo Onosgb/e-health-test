@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TodoFormComponent } from '../todo-form/todo-form.component';
 import { Todo } from 'src/app/models';
+import { FilterEnum } from 'src/app/enums/filter.enum';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,6 +12,9 @@ import { Todo } from 'src/app/models';
 export class TodoListComponent {
   dailog = inject(MatDialog);
   @Input({ required: true }) todos: Todo[] = [];
+  filterOpton = FilterEnum;
+  @Input({ required: true }) active: FilterEnum = FilterEnum.today;
+
   @Output()
   createEvent = new EventEmitter<Todo>();
   @Output() deleteEvent = new EventEmitter<number>();

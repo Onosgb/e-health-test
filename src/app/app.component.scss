@@ -89,4 +89,16 @@ header {
   .content {
     width: 80%;
   }
+
+  .date {
+    position: relative;
+
+    .current-date {
+      position: absolute;
+      font-size: 1rem;
+      right: 5px;
+      top: 5px;
+      z-index: 1;
+    }
+  }
 }

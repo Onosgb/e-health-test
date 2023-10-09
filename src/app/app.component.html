@@ -23,7 +23,9 @@
           (click)="filterData(filterOpton.today)"
         >
           <div class="button">
-            <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
+            <i class="fa fa-calendar-o date" aria-hidden="true">
+              <span class="current-date"> {{ currentDate }}</span>
+            </i>
             <div class="label">Today</div>
             <span>{{ today.length }}</span>
           </div>
@@ -35,7 +37,7 @@
           (click)="filterData(filterOpton.scheduled)"
         >
           <div class="button">
-            <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
+            <i class="fa fa-calendar" aria-hidden="true"></i>
             <div class="label">Scheduled</div>
             <span>{{ scheduled }}</span>
           </div>
@@ -83,6 +85,7 @@
     <app-todo-list
       (createEvent)="createTodo($event)"
       [todos]="filteredTodos"
+      [active]="active"
       (deleteEvent)="deleteTodo($event)"
       (scheduleEvent)="schedule($event)"
     ></app-todo-list>

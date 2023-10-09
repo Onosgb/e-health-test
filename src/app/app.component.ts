@@ -28,6 +28,10 @@ export class AppComponent {
     }
   }
 
+  get currentDate() {
+    return new Date().getDate();
+  }
+
   get today() {
     const date = new Date().getDate();
     const month = new Date().getMonth();
