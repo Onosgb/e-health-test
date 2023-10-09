@@ -6,14 +6,19 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 2rem;
   .left {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
     align-items: center;
+    &_menu {
+      width: 4rem;
+      height: 4rem;
+    }
     &_title {
       font-size: 1.8rem;
-      color: #5560a1;
+      color: $text-secondary;
     }
   }
 
@@ -22,6 +27,9 @@ header {
     align-items: center;
     gap: 1rem;
 
+    .fa {
+      color: $text-secondary;
+    }
     &_profile {
       width: 5rem;
       height: 5rem;
@@ -38,17 +46,42 @@ header {
   .side-nav {
     width: 20%;
     height: 80vh;
+    .title {
+      font-size: 1.8rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      color: $text-secondary;
+    }
 
     .buttons {
       @include align(flex, flex-start, center, column);
       gap: 1rem;
-      .btn {
+
+      .mat-mdc-button {
         background-color: $light-grey;
         width: 100%;
+        padding: 1rem 0.1rem;
+        .button {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 2rem;
+          width: 16rem;
+          .label {
+            width: 80%;
+            text-align: left;
+          }
+        }
         &:hover {
           background-color: $dark-grey;
           color: $text-secondary;
         }
+      }
+
+      .active {
+        background-color: $dark-grey !important;
+        color: $text-secondary !important;
       }
     }
   }

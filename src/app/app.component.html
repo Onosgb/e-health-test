@@ -1,27 +1,56 @@
 <header>
   <div class="left">
-    <i class="icofont-menu"></i>
-
-    <h4 class="left_title">Afternoon David</h4>
+    <img src="assets/img/menu-icon.png" alt="" class="left_menu" />
+    <h4 class="left_title">{{ getTimeOfDay }} David</h4>
   </div>
   <div class="right">
     <img class="right_profile" src="assets/img/avatar1.png" alt="" />
-    <span class="caret"></span>
+    <span class="caret">
+      <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </span>
   </div>
 </header>
 
 <div class="container">
   <div class="side-nav">
     <mat-card>
-      <mat-card-header>
-        <mat-card-title>All Tasks</mat-card-title>
-      </mat-card-header>
       <mat-card-content class="buttons">
-        <button mat-button class="btn">Today 5</button>
-        <button mat-button class="btn">Scheduled 5</button>
-        <button mat-button class="btn">All 7</button>
-        <button mat-button class="btn">Flagged 0</button>
-        <button mat-button class="btn">Completed 1</button>
+        <h4 class="title">All Tasks</h4>
+        <button mat-button class="btn active">
+          <div class="button">
+            <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
+            <div class="label">Today</div>
+            <span>5</span>
+          </div>
+        </button>
+        <button mat-button class="btn">
+          <div class="button">
+            <i class="fa fa-calendar-minus-o" aria-hidden="true"></i>
+            <div class="label">Scheduled</div>
+            <span>5</span>
+          </div>
+        </button>
+        <button mat-button class="btn">
+          <div class="button">
+            <i class="fa fa-download" aria-hidden="true"></i>
+            <div class="label">All</div>
+            <span>7</span>
+          </div>
+        </button>
+        <button mat-button class="btn">
+          <div class="button">
+            <i class="fa fa-flag" aria-hidden="true"></i>
+            <div class="label">Flagged</div>
+            <span>0</span>
+          </div>
+        </button>
+        <button mat-button class="btn">
+          <div class="button">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            <div class="label">Completed</div>
+            <span>1</span>
+          </div>
+        </button>
       </mat-card-content>
     </mat-card>
   </div>

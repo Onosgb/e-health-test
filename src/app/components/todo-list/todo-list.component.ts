@@ -13,7 +13,7 @@ export class TodoListComponent {
   addTodo() {
     const dailog = this.dailog.open(TodoFormComponent, {
       minWidth: '30%',
-      height: '80%',
+      height: 'auto',
     });
 
     dailog.afterClosed().subscribe((data) => {
