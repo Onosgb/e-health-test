@@ -15,12 +15,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let todo of todos">
-          <td><input type="checkbox" /></td>
+          <td><input type="checkbox" (click)="schedule(todo.id)" /></td>
           <td>
             <span class="task">{{ todo.task }}</span>
           </td>
           <td>{{ todo.description }}</td>
-          <td>{{ todo.time }} am</td>
+          <td>{{ todo.time | time }}</td>
           <td>
             <div class="actions">
               <button mat-icon-button color="primary" (click)="editTodo(todo)">

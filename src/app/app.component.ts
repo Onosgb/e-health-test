@@ -24,6 +24,22 @@ export class AppComponent {
     }
   }
 
+  get today() {
+    const date = new Date().getDate();
+    const month = new Date().getMonth();
+    const year = new Date().getFullYear();
+    return this.todos.filter(
+      (todo) =>
+        year === new Date(todo.date).getFullYear() &&
+        month === new Date(todo.date).getMonth() &&
+        date === new Date(todo.date).getDate()
+    ).length;
+  }
+
+  get scheduled() {
+    return this.todos.filter((todo) => todo.isScheduled).length;
+  }
+
   createTodo(todo: Todo) {
     if (todo) {
       if (typeof todo.id === 'number') {
@@ -45,5 +61,11 @@ export class AppComponent {
 
   msg(msg: string) {
     this.matSnackBar.open(msg, 'X', { duration: 3000 });
+  }
+
+  schedule(id: number) {
+    this.todos = this.todos.map((t) =>
+      t.id == id ? { ...t, isSchedule: t.isScheduled ? false : true } : t
+    );
   }
 }
