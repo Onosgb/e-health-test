@@ -68,7 +68,10 @@ export class AppComponent implements OnInit {
   }
 
   filterData(type: FilterEnum) {
-    this.isSide = false;
+    if (this.sSize <= 768) {
+      this.isSide = false;
+    }
+
     this.isContent = true;
     this.active = type;
     switch (type) {
