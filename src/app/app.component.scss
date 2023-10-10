@@ -44,8 +44,18 @@ header {
   gap: 2rem;
 
   .side-nav {
-    width: 20%;
-    height: 80vh;
+    @include card($white, 8px, 20%, 80vh);
+
+    @include respond(tab) {
+      @include card($white, 8px, 100%, 80vh);
+      .show-menu {
+        display: block;
+      }
+    }
+
+    @include align(flex, flex-start, center, column);
+    gap: 1rem;
+
     .title {
       font-size: 1.8rem;
       display: flex;
@@ -54,40 +64,60 @@ header {
       color: $text-secondary;
     }
 
-    .buttons {
-      @include align(flex, flex-start, center, column);
-      gap: 1rem;
-
-      .mat-mdc-button {
-        background-color: $light-grey;
-        width: 100%;
-        padding: 1rem 0.1rem;
-        .button {
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-          gap: 2rem;
-          width: 16rem;
-          .label {
-            width: 80%;
-            text-align: left;
+    .mat-mdc-button {
+      background-color: $light-grey;
+      width: 100%;
+      padding: 1rem 0.1rem;
+      .button {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2rem;
+        width: 16rem;
+        @include respond(small-screen) {
+          gap: 1rem;
+        }
+        .label {
+          width: 80%;
+          text-align: left;
+          @include respond(small-screen) {
+            gap: 60%;
           }
         }
-        &:hover {
-          background-color: $dark-grey;
-          color: $text-secondary;
-        }
       }
+      &:hover {
+        background-color: $dark-grey;
+        color: $text-secondary;
+      }
+    }
 
-      .active {
-        background-color: $dark-grey !important;
-        color: $text-secondary !important;
+    button.active {
+      background-color: $dark-grey !important;
+      color: $text-secondary !important;
+    }
+    // mobile responsive
+    @include respond(small-screen) {
+      // padding:
+    }
+
+    // mobile responsive
+    @include respond(tab) {
+      display: none;
+      width: 100%;
+      .show-menu {
+        display: block;
       }
     }
   }
 
   .content {
     width: 80%;
+    @include respond(tab) {
+      width: 100%;
+      .show-menu {
+        display: block;
+      }
+    }
   }
 
   .date {

@@ -13,73 +13,73 @@
 
 <div class="container">
   <div class="side-nav">
-    <mat-card>
-      <mat-card-content class="buttons">
-        <h4 class="title">All Tasks</h4>
-        <button
-          mat-button
-          class="btn"
-          [ngClass]="{ active: active === filterOpton.today }"
-          (click)="filterData(filterOpton.today)"
-        >
-          <div class="button">
-            <i class="fa fa-calendar-o date" aria-hidden="true">
-              <span class="current-date"> {{ currentDate }}</span>
-            </i>
-            <div class="label">Today</div>
-            <span>{{ today.length }}</span>
-          </div>
-        </button>
-        <button
-          mat-button
-          class="btn"
-          [ngClass]="{ active: active === filterOpton.scheduled }"
-          (click)="filterData(filterOpton.scheduled)"
-        >
-          <div class="button">
-            <i class="fa fa-calendar" aria-hidden="true"></i>
-            <div class="label">Scheduled</div>
-            <span>{{ scheduled.length }}</span>
-          </div>
-        </button>
-        <button
-          mat-button
-          class="btn"
-          [ngClass]="{ active: active === filterOpton.all }"
-          (click)="filterData(filterOpton.all)"
-        >
-          <div class="button">
-            <i class="fa fa-download" aria-hidden="true"></i>
-            <div class="label">All</div>
-            <span>{{ tasks.length }}</span>
-          </div>
-        </button>
-        <button
-          mat-button
-          class="btn"
-          [ngClass]="{ active: active === filterOpton.flagged }"
-          (click)="filterData(filterOpton.flagged)"
-        >
-          <div class="button">
-            <i class="fa fa-flag" aria-hidden="true"></i>
-            <div class="label">Flagged</div>
-            <span>{{ flagged.length }}</span>
-          </div>
-        </button>
-        <button
-          mat-button
-          class="btn"
-          [ngClass]="{ active: active === filterOpton.completed }"
-          (click)="filterData(filterOpton.completed)"
-        >
-          <div class="button">
-            <i class="fa fa-check" aria-hidden="true"></i>
-            <div class="label">Completed</div>
-            <span>{{ completed.length }}</span>
-          </div>
-        </button>
-      </mat-card-content>
-    </mat-card>
+    <!-- <mat-card>
+      <mat-card-content class="buttons"> -->
+    <h4 class="title">All Tasks</h4>
+    <button
+      mat-button
+      class="btn"
+      [ngClass]="{ active: active === filterOpton.today }"
+      (click)="filterData(filterOpton.today)"
+    >
+      <div class="button">
+        <i class="fa fa-calendar-o date" aria-hidden="true">
+          <span class="current-date"> {{ currentDate }}</span>
+        </i>
+        <div class="label">Today</div>
+        <span>{{ today.length }}</span>
+      </div>
+    </button>
+    <button
+      mat-button
+      class="btn"
+      [ngClass]="{ active: active === filterOpton.scheduled }"
+      (click)="filterData(filterOpton.scheduled)"
+    >
+      <div class="button">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        <div class="label">Scheduled</div>
+        <span>{{ scheduled.length }}</span>
+      </div>
+    </button>
+    <button
+      mat-button
+      class="btn"
+      [ngClass]="{ active: active === filterOpton.all }"
+      (click)="filterData(filterOpton.all)"
+    >
+      <div class="button">
+        <i class="fa fa-download" aria-hidden="true"></i>
+        <div class="label">All</div>
+        <span>{{ tasks.length }}</span>
+      </div>
+    </button>
+    <button
+      mat-button
+      class="btn"
+      [ngClass]="{ active: active === filterOpton.flagged }"
+      (click)="filterData(filterOpton.flagged)"
+    >
+      <div class="button">
+        <i class="fa fa-flag" aria-hidden="true"></i>
+        <div class="label">Flagged</div>
+        <span>{{ flagged.length }}</span>
+      </div>
+    </button>
+    <button
+      mat-button
+      class="btn"
+      [ngClass]="{ active: active === filterOpton.completed }"
+      (click)="filterData(filterOpton.completed)"
+    >
+      <div class="button">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        <div class="label">Completed</div>
+        <span>{{ completed.length }}</span>
+      </div>
+    </button>
+    <!-- </mat-card-content>
+    </mat-card> -->
   </div>
   <div class="content">
     <app-task-list

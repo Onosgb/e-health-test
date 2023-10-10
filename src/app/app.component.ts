@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     const tasks = this.getTasks;
 
     if (tasks) {
-      this.tasks = tasks;
+      this.tasks = this.today;
     }
   }
 
