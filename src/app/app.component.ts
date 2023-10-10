@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   tasks: Task[] = [];
   isSide = true;
   isContent = true;
-  title = 'e-health-task-list';
+
   active: FilterEnum = FilterEnum.today;
   sSize!: number;
 
@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
     if (tasks) {
       this.tasks = this.today;
     }
+    this.detectScreenSize();
   }
 
   get getTimeOfDay(): string {
@@ -177,6 +178,7 @@ export class AppComponent implements OnInit {
 
   detectScreenSize() {
     this.sSize = window.innerWidth;
+    console.log('screen: ', this.sSize);
     // You can add logic here to respond to different screen sizes
     if (this.sSize <= 768) {
       // Small screen
