@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
     const date = new Date().getDate();
     const month = new Date().getMonth();
     const year = new Date().getFullYear();
-    return this.tasks.filter(
+    return this.getTasks.filter(
       (task) =>
         year === new Date(task.date).getFullYear() &&
         month === new Date(task.date).getMonth() &&
