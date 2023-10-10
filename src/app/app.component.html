@@ -86,7 +86,6 @@
       *ngIf="isContent"
       (createEvent)="createTask($event)"
       [tasks]="tasks"
-      [active]="active"
       (deleteEvent)="deleteTask($event)"
       (completedEvent)="selectCompleted($event)"
     ></app-task-list>

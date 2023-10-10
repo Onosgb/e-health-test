@@ -12,8 +12,6 @@ import { FilterEnum } from 'src/app/enums/filter.enum';
 export class TaskListComponent {
   dailog = inject(MatDialog);
   @Input({ required: true }) tasks: Task[] = [];
-  filterOpton = FilterEnum;
-  @Input({ required: true }) active: FilterEnum = FilterEnum.today;
 
   @Output()
   createEvent = new EventEmitter<Task>();
