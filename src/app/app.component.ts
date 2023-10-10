@@ -68,6 +68,7 @@ export class AppComponent implements OnInit {
 
   filterData(type: FilterEnum) {
     this.isSide = false;
+    this.isContent = true;
     this.active = type;
     switch (type) {
       case this.filterOpton.all:
