@@ -1,4 +1,3 @@
-import { Todo } from './../../models/todo.model';
 import { Component, Inject } from '@angular/core';
 import {
   FormBuilder,
@@ -7,36 +6,37 @@ import {
   Validators,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Task } from 'src/app/models';
 
 @Component({
-  selector: 'app-todo-form',
-  templateUrl: './todo-form.component.html',
-  styleUrls: ['./todo-form.component.scss'],
+  selector: 'app-task-form',
+  templateUrl: './task-form.component.html',
+  styleUrls: ['./task-form.component.scss'],
 })
-export class TodoFormComponent {
-  todoForm!: FormGroup;
+export class TaskFormComponent {
+  taskForm!: FormGroup;
 
   submitted = false;
   constructor(
-    public dialogRef: MatDialogRef<TodoFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Todo,
+    public dialogRef: MatDialogRef<TaskFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Task,
     private fb: FormBuilder
   ) {
     this.createForm();
 
     if (data) {
-      this.todoForm.patchValue(this.data);
+      this.taskForm.patchValue(this.data);
     }
   }
 
   get f() {
-    return this.todoForm.controls;
+    return this.taskForm.controls;
   }
 
   createForm() {
-    this.todoForm = this.fb.group({
+    this.taskForm = this.fb.group({
       id: new FormControl(''),
-      task: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       time: new FormControl('', Validators.required),
       priority: new FormControl(''),
@@ -49,8 +49,8 @@ export class TodoFormComponent {
 
   onSubmit() {
     this.submitted = true;
-    if (this.todoForm.valid) {
-      this.dialogRef.close(this.todoForm.value);
+    if (this.taskForm.valid) {
+      this.dialogRef.close(this.taskForm.value);
     }
   }
 

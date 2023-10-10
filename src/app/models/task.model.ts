@@ -1,6 +1,6 @@
-export interface Todo {
+export interface Task {
   id: number;
-  task: string;
+  name: string;
   description: string;
   time: string;
   priority: boolean;

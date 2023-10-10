@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title class="title">Todo List</mat-card-title>
+    <mat-card-title class="title">Task List</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <table width="100%" height="60%">
@@ -14,35 +14,35 @@
         </th>
       </thead>
       <tbody>
-        <tr *ngFor="let todo of todos">
+        <tr *ngFor="let task of tasks">
           <td>
             <i
               class="fa fa-check-square"
               aria-hidden="true"
-              *ngIf="todo.completed"
-              (click)="selectCompleted(todo.id)"
+              *ngIf="task.completed"
+              (click)="selectCompleted(task.id)"
             ></i>
             <i
               class="fa fa-square-o"
               aria-hidden="true"
-              *ngIf="!todo.completed"
-              (click)="selectCompleted(todo.id)"
+              *ngIf="!task.completed"
+              (click)="selectCompleted(task.id)"
             ></i>
           </td>
           <td>
-            <span class="task">{{ todo.task }}</span>
+            <span class="task">{{ task.name }}</span>
           </td>
-          <td>{{ todo.description }}</td>
-          <td>{{ todo.time | time }}</td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.time | time }}</td>
           <td>
             <div class="actions">
-              <button mat-icon-button color="primary" (click)="editTodo(todo)">
+              <button mat-icon-button color="primary" (click)="editTask(task)">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
               <button
                 mat-icon-button
                 color="accent"
-                (click)="deleteTodo(todo.id)"
+                (click)="deleteTask(task.id)"
               >
                 <i class="fa fa-trash" aria-hidden="true"></i>
               </button>
@@ -55,7 +55,7 @@
       <button
         mat-raised-button
         color="primary"
-        (click)="addTodo()"
+        (click)="addTask()"
         *ngIf="filterOpton.today === active"
       >
         <i class="fa fa-plus" aria-hidden="true"></i> Add Task

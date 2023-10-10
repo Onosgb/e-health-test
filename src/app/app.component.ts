@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Todo } from './models';
+import { Component, OnInit, inject } from '@angular/core';
+import { Task } from './models';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FilterEnum } from './enums/filter.enum';
 
@@ -8,13 +8,21 @@ import { FilterEnum } from './enums/filter.enum';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   filterOpton = FilterEnum;
   matSnackBar = inject(MatSnackBar);
-  todos: Todo[] = [];
-  filteredTodos: Todo[] = [];
-  title = 'e-health-todo-list';
+  tasks: Task[] = [];
+
+  title = 'e-health-task-list';
   active: FilterEnum = FilterEnum.today;
+
+  ngOnInit(): void {
+    const tasks = this.getTasks;
+
+    if (tasks) {
+      this.tasks = tasks;
+    }
+  }
 
   get getTimeOfDay(): string {
     const currentHour = new Date().getHours();
@@ -36,73 +44,83 @@ export class AppComponent {
     const date = new Date().getDate();
     const month = new Date().getMonth();
     const year = new Date().getFullYear();
-    return this.todos.filter(
-      (todo) =>
-        year === new Date(todo.date).getFullYear() &&
-        month === new Date(todo.date).getMonth() &&
-        date === new Date(todo.date).getDate()
+    return this.tasks.filter(
+      (task) =>
+        year === new Date(task.date).getFullYear() &&
+        month === new Date(task.date).getMonth() &&
+        date === new Date(task.date).getDate()
     );
   }
 
   get scheduled() {
-    return this.todos.filter((todo) => todo.scheduled);
+    return this.getTasks.filter((task) => task.scheduled);
   }
 
   get completed() {
-    return this.todos.filter((todo) => todo.completed);
+    return this.getTasks.filter((task) => task.completed);
   }
 
   get flagged() {
-    return this.todos.filter((todo) => todo.flagged);
+    return this.getTasks.filter((task) => task.flagged);
   }
 
   filterData(type: FilterEnum) {
     this.active = type;
     switch (type) {
       case this.filterOpton.all:
-        this.filteredTodos = this.todos;
+        this.tasks = this.getTasks;
         break;
 
       case this.filterOpton.scheduled:
-        this.filteredTodos = this.scheduled;
+        this.tasks = this.scheduled;
         break;
 
       case this.filterOpton.completed:
-        this.filteredTodos = this.completed;
+        this.tasks = this.completed;
         break;
 
       case this.filterOpton.flagged:
-        this.filteredTodos = this.flagged;
+        this.tasks = this.flagged;
         break;
 
       default:
-        this.filteredTodos = this.today;
+        this.tasks = this.today;
         break;
     }
   }
 
-  createTodo(todo: Todo) {
-    if (todo) {
-      if (typeof todo.id === 'number') {
-        this.todos = this.todos.map((oldTodo) =>
-          oldTodo.id === todo.id ? todo : oldTodo
+  createTask(task: Task) {
+    let tasks = this.getTasks;
+
+    if (task) {
+      if (typeof task.id === 'number') {
+        this.tasks = tasks.map((oldTask) =>
+          oldTask.id === task.id ? task : oldTask
         );
-        this.filteredTodos = this.filteredTodos.map((oldTodo) =>
-          oldTodo.id === todo.id ? todo : oldTodo
+
+        tasks = tasks.map((oldTask) =>
+          oldTask.id === task.id ? task : oldTask
         );
+
         this.msg('Successfully updated!');
       } else {
-        todo.id = this.todos.length;
-        this.todos.push(todo);
-        this.filteredTodos.push(todo);
+        task.id = this.tasks.length;
+
+        tasks.push(task);
+        this.tasks.push(task);
+
         this.msg('Successfully added!');
       }
     }
+
+    this.setTasks(tasks);
   }
 
-  deleteTodo(id: number) {
-    this.todos = this.todos.filter((todo) => todo.id !== +id);
-    this.todos = this.filteredTodos.filter((todo) => todo.id !== +id);
+  deleteTask(id: number) {
+    let tasks = this.getTasks;
+    this.tasks = this.tasks.filter((task) => task.id !== +id);
+    tasks = this.tasks.filter((task) => task.id !== +id);
+    this.setTasks(tasks);
     this.msg('Successfully removed!');
   }
 
@@ -110,13 +128,29 @@ export class AppComponent {
     this.matSnackBar.open(msg, 'X', { duration: 3000 });
   }
 
+  get getTasks(): Task[] {
+    const tasks = localStorage.getItem('tasks');
+    if (tasks) {
+      return JSON.parse(tasks);
+    }
+
+    return [];
+  }
+
   selectCompleted(id: number) {
-    this.todos = this.todos.map((t) =>
+    let tasks = this.getTasks;
+    this.tasks = this.tasks.map((t) =>
       t.id === id ? { ...t, completed: t.completed ? false : true } : t
     );
 
-    this.filteredTodos = this.filteredTodos.map((t) =>
+    tasks = tasks.map((t) =>
       t.id === id ? { ...t, completed: t.completed ? false : true } : t
     );
+
+    this.setTasks(tasks);
+  }
+
+  setTasks(tasks: Task[]) {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 }

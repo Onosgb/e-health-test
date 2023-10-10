@@ -1,6 +1,6 @@
-<div class="container" [formGroup]="todoForm">
+<div class="container" [formGroup]="taskForm">
   <div class="dialog-header">
-    <h4 class="title">Add Task</h4>
+    <h4 class="title">{{ data ? "Edit" : "Add" }} Task</h4>
 
     <span class="close" (click)="close()">
       <i class="fa fa-times" aria-hidden="true"></i>
@@ -10,8 +10,8 @@
     <input
       type="text"
       placeholder="Task"
-      formControlName="task"
-      [ngClass]="{ invalid: f['task'].invalid && submitted }"
+      formControlName="name"
+      [ngClass]="{ invalid: f['name'].invalid && submitted }"
     />
   </div>
   <div class="form-group">

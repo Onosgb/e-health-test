@@ -1,27 +1,27 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { TodoFormComponent } from '../todo-form/todo-form.component';
-import { Todo } from 'src/app/models';
+import { TaskFormComponent } from '../task-form/task-form.component';
+import { Task } from 'src/app/models';
 import { FilterEnum } from 'src/app/enums/filter.enum';
 
 @Component({
-  selector: 'app-todo-list',
-  templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss'],
+  selector: 'app-task-list',
+  templateUrl: './task-list.component.html',
+  styleUrls: ['./task-list.component.scss'],
 })
-export class TodoListComponent {
+export class TaskListComponent {
   dailog = inject(MatDialog);
-  @Input({ required: true }) todos: Todo[] = [];
+  @Input({ required: true }) tasks: Task[] = [];
   filterOpton = FilterEnum;
   @Input({ required: true }) active: FilterEnum = FilterEnum.today;
 
   @Output()
-  createEvent = new EventEmitter<Todo>();
+  createEvent = new EventEmitter<Task>();
   @Output() deleteEvent = new EventEmitter<number>();
   @Output() completedEvent = new EventEmitter<number>();
 
-  addTodo() {
-    const dailog = this.dailog.open(TodoFormComponent, {
+  addTask() {
+    const dailog = this.dailog.open(TaskFormComponent, {
       minWidth: '30%',
       height: 'auto',
     });
@@ -33,15 +33,15 @@ export class TodoListComponent {
     });
   }
 
-  deleteTodo(id: number) {
+  deleteTask(id: number) {
     this.deleteEvent.emit(id);
   }
 
-  editTodo(todo: Todo) {
-    const dailog = this.dailog.open(TodoFormComponent, {
+  editTask(task: Task) {
+    const dailog = this.dailog.open(TaskFormComponent, {
       minWidth: '30%',
       height: 'auto',
-      data: todo,
+      data: task,
     });
 
     dailog.afterClosed().subscribe((data) => {

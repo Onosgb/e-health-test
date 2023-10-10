@@ -51,7 +51,7 @@
           <div class="button">
             <i class="fa fa-download" aria-hidden="true"></i>
             <div class="label">All</div>
-            <span>{{ todos.length }}</span>
+            <span>{{ tasks.length }}</span>
           </div>
         </button>
         <button
@@ -82,12 +82,12 @@
     </mat-card>
   </div>
   <div class="content">
-    <app-todo-list
-      (createEvent)="createTodo($event)"
-      [todos]="filteredTodos"
+    <app-task-list
+      (createEvent)="createTask($event)"
+      [tasks]="tasks"
       [active]="active"
-      (deleteEvent)="deleteTodo($event)"
+      (deleteEvent)="deleteTask($event)"
       (completedEvent)="selectCompleted($event)"
-    ></app-todo-list>
+    ></app-task-list>
   </div>
 </div>
