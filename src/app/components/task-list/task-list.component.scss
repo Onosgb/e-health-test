@@ -12,56 +12,57 @@
     color: $text-secondary;
   }
 
-  table {
-    width: 100%;
-    max-height: 60vh;
-    overflow: hidden;
-    overflow-y: auto;
-    border-collapse: collapse;
+  .content {
+    height: 60vh;
+    table {
+      width: 100%;
+      overflow: hidden;
+      overflow-y: auto;
+      border-collapse: collapse;
 
-    thead {
-      text-align: left;
-      th {
-        background-color: $light-grey;
-        padding: 1rem 0.5rem;
-        color: $text-dark;
-        font-weight: bolder;
-        font-size: 1.8rem;
-        @include respond(tab) {
-          font-size: 1.2rem;
-        }
-      }
-    }
-
-    tbody {
-      tr {
-        td {
-          border-bottom: 1px solid $text-light;
-          color: $text-dark;
-          font-weight: normal;
-          font-size: 1.6rem;
+      thead {
+        text-align: left;
+        th {
+          background-color: $light-grey;
           padding: 1rem 0.5rem;
+          color: $text-dark;
+          font-weight: bolder;
+          font-size: 1.8rem;
           @include respond(tab) {
             font-size: 1.2rem;
           }
-          .fa-check-square {
-            color: blue;
-          }
-          .task {
-            color: #000;
-            font-weight: bold;
-          }
-          .btn {
-            border: none;
-            padding: 0.5em;
-            background-color: transparent;
-            cursor: pointer;
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            border-bottom: 1px solid $text-light;
+            color: $text-dark;
+            font-weight: normal;
+            font-size: 1.6rem;
+            padding: 1rem 0.5rem;
+            @include respond(tab) {
+              font-size: 1.2rem;
+            }
+            .fa-check-square {
+              color: blue;
+            }
+            .task {
+              color: #000;
+              font-weight: bold;
+            }
+            .btn {
+              border: none;
+              padding: 0.5em;
+              background-color: transparent;
+              cursor: pointer;
+            }
           }
         }
       }
     }
   }
-
   .card-footer {
     padding-top: 4rem;
     @include align(flex, flex-end, center, row);
