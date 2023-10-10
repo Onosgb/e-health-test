@@ -12,13 +12,15 @@ header {
     justify-content: flex-end;
     gap: 1rem;
     align-items: center;
+    color: $text-secondary;
+
     &_menu {
       width: 4rem;
       height: 4rem;
     }
+
     &_title {
       font-size: 1.8rem;
-      color: $text-secondary;
     }
   }
 
@@ -48,9 +50,6 @@ header {
 
     @include respond(tab) {
       @include card($white, 8px, 100%, 80vh);
-      .show-menu {
-        display: block;
-      }
     }
 
     @include align(flex, flex-start, center, column);
@@ -102,11 +101,7 @@ header {
 
     // mobile responsive
     @include respond(tab) {
-      display: none;
       width: 100%;
-      .show-menu {
-        display: block;
-      }
     }
   }
 
@@ -114,9 +109,6 @@ header {
     width: 80%;
     @include respond(tab) {
       width: 100%;
-      .show-menu {
-        display: block;
-      }
     }
   }
 

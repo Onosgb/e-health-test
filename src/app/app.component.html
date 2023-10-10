@@ -2,6 +2,10 @@
   <div class="left">
     <img src="assets/img/menu-icon.png" alt="" class="left_menu" />
     <h4 class="left_title">{{ getTimeOfDay }} David</h4>
+    <span (click)="openNav()" *ngIf="sSize <= 768">
+      <i class="fa fa-bars" aria-hidden="true" *ngIf="!isSide"></i>
+      <i class="fa fa-times" aria-hidden="true" *ngIf="isSide"></i>
+    </span>
   </div>
   <div class="right">
     <img class="right_profile" src="assets/img/avatar1.png" alt="" />
@@ -12,7 +16,7 @@
 </header>
 
 <div class="container">
-  <div class="side-nav">
+  <div class="side-nav" *ngIf="isSide">
     <!-- <mat-card>
       <mat-card-content class="buttons"> -->
     <h4 class="title">All Tasks</h4>
@@ -83,6 +87,7 @@
   </div>
   <div class="content">
     <app-task-list
+      *ngIf="isContent"
       (createEvent)="createTask($event)"
       [tasks]="tasks"
       [active]="active"

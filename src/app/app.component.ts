@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject, signal } from '@angular/core';
 import { Task } from './models';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FilterEnum } from './enums/filter.enum';
@@ -12,9 +12,11 @@ export class AppComponent implements OnInit {
   filterOpton = FilterEnum;
   matSnackBar = inject(MatSnackBar);
   tasks: Task[] = [];
-
+  isSide = true;
+  isContent = true;
   title = 'e-health-task-list';
   active: FilterEnum = FilterEnum.today;
+  sSize!: number;
 
   ngOnInit(): void {
     const tasks = this.getTasks;
@@ -65,6 +67,7 @@ export class AppComponent implements OnInit {
   }
 
   filterData(type: FilterEnum) {
+    this.isSide = false;
     this.active = type;
     switch (type) {
       case this.filterOpton.all:
@@ -152,5 +155,35 @@ export class AppComponent implements OnInit {
 
   setTasks(tasks: Task[]) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+
+  openNav() {
+    if (this.sSize <= 768) {
+      this.isSide = !this.isSide;
+      if (this.isSide) {
+        this.isContent = false;
+      } else {
+        this.isContent = true;
+      }
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    // Update the screen width property when the window is resized
+    this.detectScreenSize();
+  }
+
+  detectScreenSize() {
+    this.sSize = window.innerWidth;
+    // You can add logic here to respond to different screen sizes
+    if (this.sSize <= 768) {
+      // Small screen
+      this.isContent = true;
+      this.isSide = false;
+    } else {
+      this.isSide = true;
+      this.isContent = true;
+    }
   }
 }
