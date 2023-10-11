@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, HostListener, Inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -15,7 +15,7 @@ import { Task } from 'src/app/models';
 })
 export class TaskFormComponent {
   taskForm!: FormGroup;
-
+  selectedDateTime: Date = new Date();
   submitted = false;
   constructor(
     public dialogRef: MatDialogRef<TaskFormComponent>,
@@ -40,7 +40,6 @@ export class TaskFormComponent {
       description: new FormControl('', Validators.required),
       time: new FormControl('', Validators.required),
       priority: new FormControl(''),
-      scheduled: new FormControl(false, Validators.required),
       completed: new FormControl(false, Validators.required),
       flagged: new FormControl(false, Validators.required),
       date: new FormControl(new Date()),
@@ -56,5 +55,12 @@ export class TaskFormComponent {
 
   close() {
     this.dialogRef.close();
+  }
+
+  @HostListener('click', ['$event'])
+  selectTime(event: any) {
+    console.log(event.target.id);
+    if (event.target.id === 'time') {
+    }
   }
 }

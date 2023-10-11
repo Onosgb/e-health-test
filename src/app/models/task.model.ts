@@ -5,7 +5,6 @@ export interface Task {
   time: string;
   priority: boolean;
   date: string;
-  scheduled: boolean;
   completed: boolean;
   flagged: boolean;
 }

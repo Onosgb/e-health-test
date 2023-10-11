@@ -41,11 +41,29 @@
       mat-button
       class="btn"
       [ngClass]="{ active: active === filterOpton.scheduled }"
-      (click)="filterData(filterOpton.scheduled)"
+      (click)="openDatePicker()"
     >
       <div class="button">
         <i class="fa fa-calendar" aria-hidden="true"></i>
-        <div class="label">Scheduled</div>
+
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Date"
+          type="hidden"
+          #date
+          (dateChange)="filterByDate(date.value)"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker"
+          id="datepicker"
+          [hidden]="true"
+        ></mat-datepicker-toggle>
+        <div class="label">
+          Scheduled
+          <mat-datepicker #ref #picker></mat-datepicker>
+        </div>
         <span>{{ scheduled.length }}</span>
       </div>
     </button>
@@ -58,7 +76,7 @@
       <div class="button">
         <i class="fa fa-download" aria-hidden="true"></i>
         <div class="label">All</div>
-        <span>{{ tasks.length }}</span>
+        <span>{{ getTasks.length }}</span>
       </div>
     </button>
     <button

@@ -1,7 +1,14 @@
-import { Component, HostListener, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { Task } from './models';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FilterEnum } from './enums/filter.enum';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +16,16 @@ import { FilterEnum } from './enums/filter.enum';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  @ViewChild('picker') picker!: MatDatepicker<Date>;
   filterOpton = FilterEnum;
   matSnackBar = inject(MatSnackBar);
   tasks: Task[] = [];
   isSide = true;
   isContent = true;
-
   active: FilterEnum = FilterEnum.today;
   sSize!: number;
+  selectedDate!: string;
+  minDate = '2000-01-01';
 
   ngOnInit(): void {
     const tasks = this.getTasks;
@@ -56,7 +65,9 @@ export class AppComponent implements OnInit {
   }
 
   get scheduled() {
-    return this.getTasks.filter((task) => task.scheduled);
+    return this.getTasks.filter(
+      (task) => new Date(task.date).getTime() !== new Date().getTime()
+    );
   }
 
   get completed() {
@@ -79,10 +90,6 @@ export class AppComponent implements OnInit {
         this.tasks = this.getTasks;
         break;
 
-      case this.filterOpton.scheduled:
-        this.tasks = this.scheduled;
-        break;
-
       case this.filterOpton.completed:
         this.tasks = this.completed;
         break;
@@ -95,6 +102,14 @@ export class AppComponent implements OnInit {
         this.tasks = this.today;
         break;
     }
+  }
+
+  filterByDate(date: string) {
+    const cDate = new Date(date);
+    this.active = this.filterOpton.scheduled;
+    this.tasks = this.getTasks.filter(
+      (t) => new Date(t.date).getTime() > cDate.getTime()
+    );
   }
 
   createTask(task: Task) {
@@ -175,13 +190,11 @@ export class AppComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    // Update the screen width property when the window is resized
     this.detectScreenSize();
   }
 
   detectScreenSize() {
     this.sSize = window.innerWidth;
-    // You can add logic here to respond to different screen sizes
     if (this.sSize <= 768) {
       // Small screen
       this.isContent = true;
@@ -190,5 +203,9 @@ export class AppComponent implements OnInit {
       this.isSide = true;
       this.isContent = true;
     }
+  }
+
+  openDatePicker() {
+    this.picker.open(); // Open the date picker
   }
 }
