@@ -45,11 +45,11 @@ header {
   display: flex;
   gap: 2rem;
 
-  .side-nav {
+  .sidebar {
     @include card($white, 8px, 20%, 80vh);
 
-    @include respond(tab) {
-      @include card($white, 8px, 100%, 80vh);
+    @include respond(phone) {
+      width: 100vw !important;
     }
 
     @include align(flex, flex-start, center, column);
@@ -93,10 +93,6 @@ header {
     button.active {
       background-color: $dark-grey !important;
       color: $text-secondary !important;
-    }
-    // mobile responsive
-    @include respond(small-screen) {
-      // padding:
     }
 
     // mobile responsive

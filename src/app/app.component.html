@@ -21,7 +21,7 @@
 </header>
 
 <div class="container">
-  <div class="side-nav" *ngIf="isSide">
+  <div class="sidebar" *ngIf="isSide">
     <h4 class="title">All Tasks</h4>
     <button
       mat-button
@@ -104,9 +104,8 @@
       </div>
     </button>
   </div>
-  <div class="content">
+  <div class="content" *ngIf="isContent">
     <app-task-list
-      *ngIf="isContent"
       (createEvent)="createTask($event)"
       [tasks]="tasks"
       (deleteEvent)="deleteTask($event)"
