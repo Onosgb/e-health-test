@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, inject, signal } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { Task } from './models';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FilterEnum } from './enums/filter.enum';
@@ -181,7 +181,6 @@ export class AppComponent implements OnInit {
 
   detectScreenSize() {
     this.sSize = window.innerWidth;
-    console.log('screen: ', this.sSize);
     // You can add logic here to respond to different screen sizes
     if (this.sSize <= 768) {
       // Small screen
