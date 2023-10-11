@@ -1,31 +1,116 @@
 <header>
   <div class="left">
-    <i class="icofont-menu"></i>
-
-    <h4 class="left_title">Afternoon David</h4>
+    <span (click)="openNav()" *ngIf="sSize <= 768">
+      <i class="fa fa-bars" aria-hidden="true" *ngIf="!isSide"></i>
+      <i class="fa fa-times" aria-hidden="true" *ngIf="isSide"></i>
+    </span>
+    <img
+      src="assets/img/menu-icon.png"
+      alt=""
+      class="left_menu"
+      *ngIf="sSize > 768"
+    />
+    <h4 class="left_title">{{ getTimeOfDay }} Godbless</h4>
   </div>
   <div class="right">
     <img class="right_profile" src="assets/img/avatar1.png" alt="" />
-    <span class="caret"></span>
+    <span class="caret">
+      <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </span>
   </div>
 </header>
 
 <div class="container">
-  <div class="side-nav">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>All Tasks</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="buttons">
-        <button mat-button class="btn">Today 5</button>
-        <button mat-button class="btn">Scheduled 5</button>
-        <button mat-button class="btn">All 7</button>
-        <button mat-button class="btn">Flagged 0</button>
-        <button mat-button class="btn">Completed 1</button>
-      </mat-card-content>
-    </mat-card>
+  <div class="side-nav" *ngIf="isSide">
+    <h4 class="title">All Tasks</h4>
+    <button
+      mat-button
+      class="btn"
+      [ngClass]="{ active: active === filterOpton.today }"
+      (click)="filterData(filterOpton.today)"
+    >
+      <div class="button">
+        <i class="fa fa-calendar-o date" aria-hidden="true">
+          <span class="current-date"> {{ currentDate }}</span>
+        </i>
+        <div class="label">Today</div>
+        <span>{{ today.length }}</span>
+      </div>
+    </button>
+    <button
+      mat-button
+      class="btn"
+      [ngClass]="{ active: active === filterOpton.scheduled }"
+      (click)="openDatePicker()"
+    >
+      <div class="button">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Date"
+          type="hidden"
+          #date
+          (dateChange)="filterByDate(date.value)"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker"
+          id="datepicker"
+          [hidden]="true"
+        ></mat-datepicker-toggle>
+        <div class="label">
+          Scheduled
+          <mat-datepicker #ref #picker></mat-datepicker>
+        </div>
+        <span>{{ scheduled.length }}</span>
+      </div>
+    </button>
+    <button
+      mat-button
+      class="btn"
+      [ngClass]="{ active: active === filterOpton.all }"
+      (click)="filterData(filterOpton.all)"
+    >
+      <div class="button">
+        <i class="fa fa-download" aria-hidden="true"></i>
+        <div class="label">All</div>
+        <span>{{ getTasks.length }}</span>
+      </div>
+    </button>
+    <button
+      mat-button
+      class="btn"
+      [ngClass]="{ active: active === filterOpton.flagged }"
+      (click)="filterData(filterOpton.flagged)"
+    >
+      <div class="button">
+        <i class="fa fa-flag" aria-hidden="true"></i>
+        <div class="label">Flagged</div>
+        <span>{{ flagged.length }}</span>
+      </div>
+    </button>
+    <button
+      mat-button
+      class="btn"
+      [ngClass]="{ active: active === filterOpton.completed }"
+      (click)="filterData(filterOpton.completed)"
+    >
+      <div class="button">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        <div class="label">Completed</div>
+        <span>{{ completed.length }}</span>
+      </div>
+    </button>
   </div>
   <div class="content">
-    <app-todo-list></app-todo-list>
+    <app-task-list
+      *ngIf="isContent"
+      (createEvent)="createTask($event)"
+      [tasks]="tasks"
+      (deleteEvent)="deleteTask($event)"
+      (completedEvent)="selectCompleted($event)"
+    ></app-task-list>
   </div>
 </div>

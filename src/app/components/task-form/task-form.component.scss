@@ -1,0 +1,88 @@
+@use "../../scss/mixins" as *;
+@use "../../scss/variables" as *;
+
+.container {
+  @include align(flex, center, center, column);
+  padding: 2rem;
+
+  .dialog-header {
+    @include align(flex, space-between, center, null);
+    position: relative;
+    width: 100%;
+    padding-bottom: 2rem;
+    .title {
+      text-align: center;
+
+      width: 90%;
+      font-size: 1.5rem;
+    }
+
+    .close {
+      width: 10%;
+      cursor: pointer;
+      color: $text-dark;
+      font-size: 1.5rem;
+      z-index: 1;
+    }
+  }
+
+  input {
+    @include input(
+      1px solid $text-secondary-light,
+      0.5rem,
+      4rem,
+      $white,
+      $light-grey
+    );
+    margin-bottom: 2rem;
+  }
+
+  textarea.invalid,
+  input.invalid {
+    border: 1px solid $text-danger; /* Add a red border for invalid textarea */
+  }
+
+  .text-area {
+    @include input(
+      1px solid $text-secondary-light,
+      0.5rem,
+      4rem,
+      $white,
+      $light-grey
+    );
+    margin-bottom: 2rem;
+    height: 10rem;
+    padding-top: 1rem;
+  }
+
+  .groups {
+    @include align(flex, space-between, center, row);
+    width: 100%;
+
+    .group-checks {
+      width: 30%;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      @include align(flex, space-between, center, row);
+      .checkbox {
+        outline: $text-secondary-light;
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  .time-input {
+    width: 50%;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .close {
+    width: 50%;
+    @include align(flex, flex-end, center, row);
+  }
+}

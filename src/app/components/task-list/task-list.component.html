@@ -1,0 +1,50 @@
+<div class="container">
+  <h4 class="title">Todo List</h4>
+  <div class="content">
+    <table width="100%">
+      <thead>
+        <th width="2%"></th>
+        <th width="25%">Task</th>
+        <th>Description</th>
+        <th width="20%">Time</th>
+        <th width="10%">Actions</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td>
+            <i
+              class="fa fa-check-square"
+              aria-hidden="true"
+              *ngIf="task.completed"
+              (click)="selectCompleted(task.id)"
+            ></i>
+            <i
+              class="fa fa-square-o"
+              aria-hidden="true"
+              *ngIf="!task.completed"
+              (click)="selectCompleted(task.id)"
+            ></i>
+          </td>
+          <td>
+            <span class="task">{{ task.name }}</span>
+          </td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.time | time }}</td>
+          <td>
+            <button (click)="editTask(task)" class="btn">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </button>
+            <button (click)="deleteTask(task.id)" class="btn text-danger">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <button mat-raised-button color="primary" (click)="addTask()">
+      <i class="fa fa-plus" aria-hidden="true"></i> Add Task
+    </button>
+  </div>
+</div>

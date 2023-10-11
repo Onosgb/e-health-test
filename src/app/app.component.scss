@@ -6,14 +6,21 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 2rem;
   .left {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
     align-items: center;
+    color: $text-secondary;
+
+    &_menu {
+      width: 4rem;
+      height: 4rem;
+    }
+
     &_title {
       font-size: 1.8rem;
-      color: #5560a1;
     }
   }
 
@@ -22,6 +29,9 @@ header {
     align-items: center;
     gap: 1rem;
 
+    .fa {
+      color: $text-secondary;
+    }
     &_profile {
       width: 5rem;
       height: 5rem;
@@ -36,24 +46,81 @@ header {
   gap: 2rem;
 
   .side-nav {
-    width: 20%;
-    height: 80vh;
+    @include card($white, 8px, 20%, 80vh);
 
-    .buttons {
-      @include align(flex, flex-start, center, column);
-      gap: 1rem;
-      .btn {
-        background-color: $light-grey;
-        width: 100%;
-        &:hover {
-          background-color: $dark-grey;
-          color: $text-secondary;
+    @include respond(tab) {
+      @include card($white, 8px, 100%, 80vh);
+    }
+
+    @include align(flex, flex-start, center, column);
+    gap: 1rem;
+
+    .title {
+      font-size: 1.8rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      color: $text-secondary;
+    }
+
+    .mat-mdc-button {
+      background-color: $light-grey;
+      width: 100%;
+      padding: 1rem 0.1rem;
+      .button {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2rem;
+        width: 16rem;
+        @include respond(small-screen) {
+          gap: 1rem;
+        }
+        .label {
+          width: 80%;
+          text-align: left;
+          @include respond(small-screen) {
+            gap: 60%;
+          }
         }
       }
+      &:hover {
+        background-color: $dark-grey;
+        color: $text-secondary;
+      }
+    }
+
+    button.active {
+      background-color: $dark-grey !important;
+      color: $text-secondary !important;
+    }
+    // mobile responsive
+    @include respond(small-screen) {
+      // padding:
+    }
+
+    // mobile responsive
+    @include respond(tab) {
+      width: 100%;
     }
   }
 
   .content {
     width: 80%;
+    @include respond(tab) {
+      width: 100%;
+    }
+  }
+
+  .date {
+    position: relative;
+
+    .current-date {
+      position: absolute;
+      font-size: 1rem;
+      right: 5px;
+      top: 5px;
+      z-index: 1;
+    }
   }
 }

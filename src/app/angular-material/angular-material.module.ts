@@ -1,32 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 @NgModule({
   imports: [
     CommonModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCheckboxModule,
     MatButtonModule,
-    MatCardModule,
     MatDialogModule,
-    MatIconModule,
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRippleModule,
   ],
 
   exports: [
-    MatInputModule,
-    MatSelectModule,
-    MatCheckboxModule,
     MatButtonModule,
-    MatCardModule,
     MatDialogModule,
-    MatIconModule,
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRippleModule,
   ],
 })
 export class AngularMaterialModule {}

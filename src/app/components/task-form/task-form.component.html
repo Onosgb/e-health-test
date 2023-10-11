@@ -1,0 +1,45 @@
+<div class="container" [formGroup]="taskForm">
+  <div class="dialog-header">
+    <h4 class="title">{{ data ? "Edit" : "Add" }} Task</h4>
+
+    <span class="close" (click)="close()">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </span>
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      placeholder="Task"
+      formControlName="name"
+      [ngClass]="{ invalid: f['name'].invalid && submitted }"
+    />
+  </div>
+  <div class="form-group">
+    <textarea
+      type="text"
+      placeholder="Description"
+      class="text-area"
+      formControlName="description"
+      [ngClass]="{ invalid: f['description'].invalid && submitted }"
+    ></textarea>
+  </div>
+
+  <div class="groups">
+    <input
+      type="time"
+      placeholder="Time"
+      class="time-input"
+      formControlName="time"
+      [ngClass]="{ invalid: f['time'].invalid && submitted }"
+    />
+
+    <div class="group-checks">
+      High Priority
+      <input type="checkbox" class="checkbox" formControlName="priority" />
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="onSubmit()">
+    Add Task
+  </button>
+</div>
