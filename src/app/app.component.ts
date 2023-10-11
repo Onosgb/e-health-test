@@ -107,6 +107,11 @@ export class AppComponent implements OnInit {
   filterByDate(date: string) {
     const cDate = new Date(date);
     this.active = this.filterOpton.scheduled;
+    if (this.sSize <= 768) {
+      this.isSide = false;
+    }
+
+    this.isContent = true;
     this.tasks = this.getTasks.filter(
       (t) => new Date(t.date).getTime() > cDate.getTime()
     );
@@ -178,6 +183,11 @@ export class AppComponent implements OnInit {
   }
 
   openNav() {
+    if (this.sSize <= 768) {
+      this.isSide = false;
+    }
+
+    this.isContent = true;
     if (this.sSize <= 768) {
       this.isSide = !this.isSide;
       if (this.isSide) {
