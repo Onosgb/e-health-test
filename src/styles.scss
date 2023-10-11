@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @use "./app/scss/mixins" as *;
 @use "./app/scss/variables" as *;
+@import "src/assets/icofont/icofont.min.css";
+
 * {
   margin: 0;
   padding: 0;
