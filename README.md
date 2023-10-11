@@ -14,7 +14,14 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+## Instruction for to install node modules
+
+Run `npm install` to install the node modules
+
 ## Functionalities
 
 - UI implementation: implemented the screen and with responsiveness
 - You can filter data based on the selected category either for today, all, completed etc
+- Create, update, delete tasks
+- Store stask in local storage
+- Check completed tasks

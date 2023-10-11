@@ -4,7 +4,12 @@
       <i class="fa fa-bars" aria-hidden="true" *ngIf="!isSide"></i>
       <i class="fa fa-times" aria-hidden="true" *ngIf="isSide"></i>
     </span>
-    <img src="assets/img/menu-icon.png" alt="" class="left_menu" />
+    <img
+      src="assets/img/menu-icon.png"
+      alt=""
+      class="left_menu"
+      *ngIf="sSize > 768"
+    />
     <h4 class="left_title">{{ getTimeOfDay }} David</h4>
   </div>
   <div class="right">
