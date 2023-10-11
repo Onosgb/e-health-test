@@ -79,11 +79,7 @@ export class AppComponent implements OnInit {
   }
 
   filterData(type: FilterEnum) {
-    if (this.sSize <= 768) {
-      this.isSide = false;
-    }
-
-    this.isContent = true;
+    this.detectScreenSize();
     this.active = type;
     switch (type) {
       case this.filterOpton.all:
@@ -105,15 +101,11 @@ export class AppComponent implements OnInit {
   }
 
   filterByDate(date: string) {
-    const cDate = new Date(date);
+    const cDate = new Date(date).toISOString().slice(0, 10);
     this.active = this.filterOpton.scheduled;
-    if (this.sSize <= 768) {
-      this.isSide = false;
-    }
-
-    this.isContent = true;
+    this.detectScreenSize();
     this.tasks = this.getTasks.filter(
-      (t) => new Date(t.date).getTime() > cDate.getTime()
+      (t) => new Date(t.date).toISOString().slice(0, 10) === cDate
     );
   }
 
